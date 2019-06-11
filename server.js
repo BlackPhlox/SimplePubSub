@@ -1,22 +1,22 @@
-var express = require('express'),
+let express = require('express'),
     faye = require('faye'),
     http = require('http');
 
-var app = express(),
+let app = express(),
     server = http.createServer(app),
     bayeux = new faye.NodeAdapter({mount: '/faye', timeout: 45});
 
 bayeux.attach(server);
 
-bayeux.on('handshake', function(clientId) {
-    console.log('Client connected', clientId);
+bayeux.on('handshake', (clientId) => {
+    console.log(`Client connected ${clientId}`);
 });
 
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
-var port = process.env.PORT || 8000;
-server.listen(port, function() {
-    console.log('Listening on ' + port);
+let port = process.env.PORT || 8000;
+server.listen(port, () => {
+    console.log(`Listening on ${port}`);
 });

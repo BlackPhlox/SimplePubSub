@@ -7,15 +7,17 @@
         src="http://localhost:8000/faye/client.js">
     </script>
     <script type="text/javascript">
-        var client = new Faye.Client('http://localhost:8000/faye');
+        let client = new Faye.Client('http://localhost:8000/faye');
 
-        client.subscribe('/messages', function(message) {
+        client.subscribe('/messages', (message) => {
             alert('Got a message: ' + message.text);
         });
 
-        client.publish('/messages', {
+        window.onload = () => {
+          client.publish('/messages', {
             text: 'Hello world'
-        });
+          });
+        };
     </script>
 
     <style> body {padding: 0; margin: 0;} canvas {vertical-align: top;} </style>
