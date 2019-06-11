@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Simple Pub/Sub</title>
+    <script type="text/javascript" 
+        src="http://localhost:8000/faye/client.js">
+    </script>
+    <script type="text/javascript">
+        var client = new Faye.Client('http://localhost:8000/faye');
+
+        client.subscribe('/messages', function(message) {
+            alert('Got a message: ' + message.text);
+        });
+
+        client.publish('/messages', {
+            text: 'Hello world'
+        });
+    </script>
+
+    <style> body {padding: 0; margin: 0;} canvas {vertical-align: top;} </style>
+  </head>
+  <body>
+  </body>
+</html>
