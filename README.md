@@ -8,7 +8,7 @@ Libraries used:
 - [Express](https://expressjs.com)
 
 To setup:
-1. Click use template 
+1. Click ```Use this template```
 2. Go into the folder in the terminal
 3. Type ```npm install```
 
