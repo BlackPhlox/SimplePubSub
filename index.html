@@ -3,36 +3,11 @@
   <head>
     <meta charset="UTF-8">
     <title>Simple Pub/Sub</title>
+
+    <script>document.write(`<script src="http://${location.host}/faye/client.js"><\/script>`)</script>
     <script type="text/javascript">
-
-      //From stackoverflow user nemisj '16
-      //Link: https://stackoverflow.com/questions/1866717/document-createelementscript-adding-two-scripts-with-one-callback/1867135#1867135
-      function loadScripts(array,callback){
-        let loader = function(src,handler){
-            let script = document.createElement("script");
-            script.src = src;
-            script.onload = script.onreadystatechange = function(){
-                script.onreadystatechange = script.onload = null;
-                handler();
-            }
-            let head = document.getElementsByTagName("head")[0];
-            (head || document.body).appendChild( script );
-        };
-        (function run(){
-            if(array.length!=0){
-                loader(array.shift(), run);
-            }else{
-                callback && callback();
-            }
-        })();
-      }
-
-      //Dynamically load(Lazy loading) scripts anllowing pub/sub service
-      let client; // To allow use with the console
-      loadScripts([
-        `http://${location.host}/faye/client.js`
-      ],() => {
-        //Here the service has been loaded and is ready to be used
+      
+      window.onload = () => {
         client = new Faye.Client(`http://${location.host}/faye`);
 
         client.subscribe('/messages', (message) => {
@@ -45,8 +20,8 @@
             text: 'Hello world'
           });
         }, 1000);
-      });
-
+      }
+      
     </script>
     <style> body {padding: 0; margin: 0;} canvas {vertical-align: top;} </style>
   </head>
