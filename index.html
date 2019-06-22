@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <title>Simple Pub/Sub</title>
 
-    <script>document.write(`<script src="http://${location.host}/faye/client.js"><\/script>`)</script>
+    <script>document.write(`<script src="${location.protocol}//${location.host}/faye/client.js"><\/script>`)</script>
     <script type="text/javascript">
       
       window.onload = () => {
-        client = new Faye.Client(`http://${location.host}/faye`);
+        client = new Faye.Client(`${location.protocol}//${location.host}/faye`);
 
         client.subscribe('/messages', (message) => {
             alert('Got a message: ' + message.text);
