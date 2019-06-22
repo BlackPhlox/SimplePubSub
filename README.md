@@ -14,5 +14,5 @@ To setup:
 
 
 To run:
-1. Type ```node server.js```
+1. Type ```node server.js``` or ```npm start```
 2. Open your browser and type ```localhost:8000``` in the url
